@@ -28,9 +28,7 @@ git clone https://github.com/mghaby/StopLoss-PartialProfit-Manager.git
 
 ## Help
 
-```
-Inside the MetaTrader 5 IDE, you can highlight anything and press `F2` for more details
-```
+`Inside the MetaTrader 5 IDE, you can highlight anything and press \`F2\` for more details`
 
 ## Authors
 
