@@ -20,9 +20,6 @@ input double volumeTargetOneClose = 0.5;
 input double volumeTargetTwoClose = 0.25;
 input int breakEvenOffset = 2;
 
-//+------------------------------------------------------------------+
-//| Expert tick function                                             |
-//+------------------------------------------------------------------+
 void OnTick(){
    double onePip = 10 * SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_SIZE);
    double targetOneInPips = targetOne * onePip;
