@@ -10,19 +10,26 @@ The standard private key access model that we have today regarding the storage a
 
 ### Dependencies
 
-* Solidity IDE ([Remix IDE](https://remix.ethereum.org/) is what I reccomend)
-* Test Blockchain Network ([Truffle](https://trufflesuite.com/) & [Ganache](https://trufflesuite.com/ganache/) is what I reccomend)
+* MetaTrader 5
+* A Live or Demo Account with an MetaTrader 5 Supported Broker
 
 ### Installing
 
-`git clone https://github.com/mghaby/MultiSigWalletSolidity.git`
+* This EA can be cloned using:
+```
+git clone https://github.com/mghaby/StopLoss-PartialProfit-Manager.git
+```
+* The source code can also be copied and pasted directly into a template file in the MetaTrader 5 IDE and compiled to avoid glitches in the MetaTrader 5 software
 
 ### Executing program
 
+1. Once cloned place the source code file and the compiled `.ex5` into the `/Experts` directory in your MetaTrader 5 installation
+2. In the main MetaTrader 5 panel once logged in with a broker you can access the strategy tester in which you can follow the prompts to test this EA
+
+## Help
+
 ```
-1. Clone or copy and paste the Solidity src code into a Solidity IDE
-2. Deploy the contract on a test network
-3. Test and interact with the contract functions as you please
+Inside the MetaTrader 5 IDE, you can highlight anything and press `F2` for more details
 ```
 
 ## Authors
@@ -43,4 +50,3 @@ This project is licensed under the GNU General Public License - see the LICENSE 
 ## Acknowledgments
 
 * [README-Template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
-* [Code Inspiration](https://www.youtube.com/channel/UCJWh7F3AFyQ_x01VKzr9eyA)
