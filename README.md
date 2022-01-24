@@ -1,10 +1,13 @@
 # StopLoss-PartialProfit-Manager
 
-This Solidity contract seeks to provide a free open-source multi-signature wallet smart contract built on the Ethereum Blockchain.
+This MQL5 Expert Advisor seeks to maintain consistent risk management in my personal Foreign Exchange Trading while also closing partial profits throughout.
+
+**I AM NOT LIABLE FOR ANY PROFIT OR LOSS YOU MAY INCUR USING THIS EA**
 
 ## Description
 
-The standard private key access model that we have today regarding the storage and transactions of cryptocurrency has a major security threat being itself. In the current model, the person with the private key holds all power and access to the wallet and its belongings. If someone with malicious intent was to access this key through something such as a hack, the wallet could very easily be liquidated. The multi-signature wallet model aims to solve this by requiring multiple keys in order to validate a transaction. The implementation of this smart contract will allow multiple users to essentially vote on each proposed transaction thus increasing security. If this contract was to be deployed to the main ethereum blockchain as well as an easy-to-use interface it would solve a major issue in the crypto-space.
+The EA takes inputs in for your points in pips in which you want to take profits at as well as what amount of your lot size you wish to close at these points. It also visually marks on the chart where this will be occuring and as a line passes it will be deleted. The Stop Loss will automatically be set to break even  +/- an offset in pips at the first Take Profit close. The EA can detect exisiting trades that have been placed before it has run and will close accordingly. When setting your positions while using this EA, be sure to set your final take profit point as your take profit in your position - the EA will do the rest.
+
 
 ## Getting Started
 
@@ -28,7 +31,7 @@ git clone https://github.com/mghaby/StopLoss-PartialProfit-Manager.git
 
 ## Help
 
-`Inside the MetaTrader 5 IDE, you can highlight anything and press `***F2***` for more details`
+`Inside the MetaTrader 5 IDE, you can highlight anything and press ``F2`` for more details`
 
 ## Authors
 
