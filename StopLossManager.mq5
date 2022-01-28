@@ -20,6 +20,14 @@ input double volumeTargetOneClose = 0.5;
 input double volumeTargetTwoClose = 0.25;
 input int breakEvenOffset = 2;
 
+void OnDeinit(const int reason){
+   ObjectDelete(_Symbol, "TP2Buy");
+   ObjectDelete(_Symbol, "TP1Buy");
+   ObjectDelete(_Symbol, "TP1Sell");
+   ObjectDelete(_Symbol, "TP2Sell");
+}
+
+//+------------------------------------------------------------------+
 void OnTick(){
    double onePip = 10 * SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_SIZE);
    double targetOneInPips = targetOne * onePip;
@@ -83,3 +91,4 @@ void OnTick(){
        }
    }
 }
+//+------------------------------------------------------------------+
