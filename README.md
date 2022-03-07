@@ -41,8 +41,12 @@ git clone https://github.com/mghaby/StopLoss-PartialProfit-Manager.git
 
 ## Version History
 
+* 0.2
+    * Added Support For Weekend Close
+
 * 0.1
     * Initial Release
+
 
 ## License
 

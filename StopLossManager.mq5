@@ -8,6 +8,7 @@
 #property version   "1.00"
 
 #include <Trade\Trade.mqh>
+#include <Trade\PositionInfo.mqh>
 
 int lastPosition;
 bool lineBool = true;
@@ -19,6 +20,8 @@ input int stopLoss = 40;
 input double volumeTargetOneClose = 0.5;
 input double volumeTargetTwoClose = 0.25;
 input int breakEvenOffset = 2;
+input bool InpFridayCloseTrades = false;
+input string InpFridayCloseTimeGMT = "21:55";
 
 void OnDeinit(const int reason){
    ObjectDelete(_Symbol, "TP2Buy");
@@ -33,7 +36,7 @@ void OnTick(){
    double targetOneInPips = targetOne * onePip;
    double targetTwoInPips = targetTwo * onePip;
    double stopLossInPips = stopLoss * onePip;
-   
+  
    for (int i = PositionsTotal() - 1; i >= 0; i--){
        string symbol = PositionGetSymbol(i);
          if (_Symbol == symbol){
@@ -46,6 +49,10 @@ void OnTick(){
             
             if ((ENUM_POSITION_TYPE)PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_BUY){
                while(lineBool){
+                 ObjectDelete(_Symbol, "TP2Buy");
+                 ObjectDelete(_Symbol, "TP1Buy");
+                 ObjectDelete(_Symbol, "TP1Sell");
+                 ObjectDelete(_Symbol, "TP2Sell");
                  ObjectCreate(_Symbol, "TP1Buy", OBJ_HLINE, 0, targetTimes, positionOpen + targetOneInPips);
                  ObjectCreate(_Symbol, "TP2Buy", OBJ_HLINE, 0, targetTimes, positionOpen + targetTwoInPips);
                  ObjectSetInteger(0, "TP1Buy", OBJPROP_COLOR, clrOrange);
@@ -68,6 +75,10 @@ void OnTick(){
                   
             } else if ((ENUM_POSITION_TYPE)PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_SELL){
                while(lineBool){
+                 ObjectDelete(_Symbol, "TP2Buy");
+                 ObjectDelete(_Symbol, "TP1Buy");
+                 ObjectDelete(_Symbol, "TP1Sell");
+                 ObjectDelete(_Symbol, "TP2Sell");
                  ObjectCreate(_Symbol, "TP1Sell", OBJ_HLINE, 0, targetTimes, positionOpen - targetOneInPips);
                  ObjectCreate(_Symbol, "TP2Sell", OBJ_HLINE, 0, targetTimes, positionOpen - targetTwoInPips);
                  ObjectSetInteger(0, "TP1Sell", OBJPROP_COLOR, clrOrange);
@@ -90,5 +101,34 @@ void OnTick(){
             if (lastPosition != positionTicket) lineBool = true;
        }
    }
+   
+    if (InpFridayCloseTrades && PositionsTotal() > 0 && FridayTimeIsActive()){
+      CloseAllPositions();
+   }
 }
 //+------------------------------------------------------------------+
+//+------------------------------------------------------------------+
+//| Check if Near Market Close GMT (5 mins)                          |
+//+------------------------------------------------------------------+
+bool FridayTimeIsActive(){
+   MqlDateTime dt;
+
+   datetime gmtTime = TimeGMT(dt);
+   datetime endTime = StringToTime(TimeToString(gmtTime, TIME_DATE) + " " + InpFridayCloseTimeGMT);
+
+   if (dt.day_of_week == (ENUM_DAY_OF_WEEK)FRIDAY && gmtTime >= endTime){
+      return true;
+   }
+   
+   return false;
+}
+ 
+//+------------------------------------------------------------------+
+//| Close All Positions                                              |
+//+------------------------------------------------------------------+
+void CloseAllPositions(){
+   for (int i = PositionsTotal()-1; i >= 0; i--){
+      int ticket = PositionGetTicket(i);
+      trade.PositionClose(ticket);
+   }
+}
