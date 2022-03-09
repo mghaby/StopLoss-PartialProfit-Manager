@@ -5,10 +5,9 @@
 //+------------------------------------------------------------------+
 #property copyright "Copyright 2021, Mark Ghaby"
 #property link      "http://www.mghaby.com/"
-#property version   "1.00"
+#property version   "2.00"
 
 #include <Trade\Trade.mqh>
-#include <Trade\PositionInfo.mqh>
 
 int lastPosition;
 bool lineBool = true;

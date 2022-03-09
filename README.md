@@ -3,6 +3,7 @@
 This MQL5 Expert Advisor seeks to maintain consistent risk management in my personal Foreign Exchange Trading while also closing partial profits throughout.
 
 **I AM NOT LIABLE FOR ANY PROFIT OR LOSS YOU MAY INCUR USING THIS EA**
+**MINIMUM 0.1 LOT SIZES FOR THIS EA TO WORK**
 
 ## Description
 
